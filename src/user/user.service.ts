@@ -27,12 +27,14 @@ export class UserService {
     return this.prisma.user.findUnique({ where: { email } });
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll() {
+    return await this.prisma.user.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.prisma.user.findMany({
+      where: { id },
+    });
   }
 
   update(id: number, data: UpdateUserDto) {
